@@ -5,17 +5,17 @@ from cvzone.SerialModule import SerialObject         # Imports SerialObject to h
 
 cap = cv2.VideoCapture(0)        # Opens the default camera (0 means the first connected webcam)
 
-detector = HandDetector(maxHands=1, detectionCon=0.7)  # Creates a hand detector that looks for 1 hand with 70% confidence
+detector = HandDetector(maxHands=1, detectionCon=0.7)  # Creating a hand detector that looks for 1 hand with 70% confidence
 
-mySerial = SerialObject("COM3", 115200, 1)   # Sets up serial communication with Arduino on COM3, baud rate 115200
+mySerial = SerialObject("COM3", 115200, 1)   # Sets up serial communication with Arduino on COM3 with the baud rate 115200
 
-last_fingers = None              # Stores the last finger positions sent, to avoid sending duplicates
-last_send_ms = 0                 # Tracks the time of the last serial data send
-SEND_EVERY_MS = 66               # Sets delay between sends (~15 times per second)
+last_fingers = None              # Storing the last finger positions sent, to avoid sending duplicates
+last_send_ms = 0                 # Tracking the time of the last serial data send
+SEND_EVERY_MS = 66               # Setting delay between sends (~15 times per second)
 
-# Choose the servo angles your Arduino uses for open/closed
-OPEN_ANGLE   = 0                 # change if your servos use a different "open" angle
-CLOSED_ANGLE = 180               # change if your servos use a different "closed" angle
+# Choosing the servo angles Arduino uses for open/closed
+OPEN_ANGLE   = 0                 # changing if the servos use a different "open" angle
+CLOSED_ANGLE = 180               # changing if the servos use a different "closed" angle
 
 while True:                      # Infinite loop to continuously read camera frames
     success, image = cap.read()  # Reading the frame from webcam (success=True if frame was read properly)
